@@ -1,22 +1,52 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  pageTitle?: string;
+  description?: string;
+  url?: string;
+}
+
+const {
+  pageTitle,
+  description = "a minimal architect's portafolio",
+  url,
+} = Astro.props;
+const siteTitle = "Architect";
+const finalTitle = [siteTitle, pageTitle].filter(Boolean).join(" | ");
+const baseUrl = process.env.URL || "http:localhost:4321";
+const finalUrl = url ? baseUrl.concat(url) : baseUrl;
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="canonical" href={finalUrl} />
+    <title>{finalTitle}</title>
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name: finalTitle,
+        description: description,
+        url: finalUrl,
+        publisher: {
+          "@type": "Organization",
+          name: siteTitle,
+          logo: { "@type": "ImageObject", url: `${baseUrl}/favicon.svg` },
+        },
+      })}
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
