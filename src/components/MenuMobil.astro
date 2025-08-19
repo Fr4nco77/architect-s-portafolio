@@ -1,0 +1,83 @@
+<div class="flex items-center space-x-4 md:hidden">
+  <button
+    id="open-menu"
+    aria-label="Toggle menu"
+    class="flex h-8 w-5 flex-col items-center justify-center gap-1"
+  >
+    <span class="h-0.5 w-5 bg-black transition-all duration-300 ease-in-out dark:bg-white"
+    ></span>
+    <span class="h-0.5 w-5 bg-black transition-all duration-300 ease-in-out dark:bg-white"
+    ></span>
+    <span class="h-0.5 w-5 bg-black transition-all duration-300 ease-in-out dark:bg-white"
+    ></span>
+  </button>
+</div>
+
+<div
+  id="mobilMenu"
+  class="invisible fixed inset-0 z-15 opacity-0 backdrop-blur-sm transition-all duration-300 ease-in-out md:hidden"
+>
+  <div
+    class="relative w-full  flex flex-col items-center justify-center"
+  >
+    <button
+      id="close-menu"
+      class="absolute top-6 right-6 flex h-6 w-6 flex-col items-center justify-center"
+      aria-label="Close menu"
+    >
+      <span class="translatey-0 h-0.5 w-5 rotate-45"></span>
+      <span class="translatey-0 h-0.5 w-5 -translate-y-0.5 -rotate-45"></span>
+    </button>
+    <ul class="flex flex-col space-y-8 mt-4">
+      <li>
+        <a
+          class="font-title text-2xl transition-opacity duration-200 hover:opacity-75"
+          href="/#about">About</a
+        >
+      </li>
+      <li>
+        <a
+          class="font-title text-2xl transition-opacity duration-200 hover:opacity-75"
+          href="/#proyects">Projects</a
+        >
+      </li>
+      <li>
+        <a
+          class="font-title text-2xl transition-opacity duration-200 hover:opacity-75"
+          href="/#contact">Contact</a
+        >
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  const menu = document.getElementById("mobilMenu");
+  const btnOpen = document.getElementById("open-menu");
+  const btnClose = document.getElementById("close-menu");
+  const [span1, span2, span3] = btnOpen!.querySelectorAll("span");
+
+  btnOpen?.addEventListener("click", () => {
+
+    span1.classList.toggle("rotate-45");
+    span1.classList.toggle("translate-y-1.5");
+    span2.classList.toggle("opacity-0");
+    span3.classList.toggle("-rotate-45");
+    span3.classList.toggle("-translate-y-1.5");
+
+    menu?.classList.toggle("opacity-0");
+    menu?.classList.toggle("invisible");
+  });
+
+  btnClose?.addEventListener("click", () => {
+
+span1.classList.toggle("rotate-45");
+    span1.classList.toggle("translate-y-1.5");
+    span2.classList.toggle("opacity-0");
+    span3.classList.toggle("-rotate-45");
+    span3.classList.toggle("-translate-y-1.5");
+
+    menu?.classList.toggle("opacity-0");
+    menu?.classList.toggle("invisible");
+  });
+</script>

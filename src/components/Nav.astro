@@ -1,0 +1,36 @@
+---
+import ThemeToggle from "@components/ThemeToggle.astro";
+import MobilMenu from "@components/MenuMobil.astro";
+---
+
+<nav
+  class="fixed top-0 right-0 left-0 z-10 border-b border-gray-300 backdrop-blur-sm dark:border-neutral-900"
+>
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+    <a href="/" class="font-title text-xl">ARCHITECT</a>
+    <div class="flex items-center gap-4 md:gap-8">
+      <ul class="hidden items-center gap-8 md:flex">
+        <li>
+          <a
+            class="text-sm transition-opacity duration-200 hover:opacity-75"
+            href="/#about">About</a
+          >
+        </li>
+        <li>
+          <a
+            class="text-sm transition-opacity duration-200 hover:opacity-75"
+            href="/#proyects">Projects</a
+          >
+        </li>
+        <li>
+          <a
+            class="text-sm transition-opacity duration-200 hover:opacity-75"
+            href="/#contact">Contact</a
+          >
+        </li>
+      </ul>
+      <ThemeToggle />
+      <MobilMenu />
+    </div>
+  </div>
+</nav>
