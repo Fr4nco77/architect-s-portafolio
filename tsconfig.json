@@ -5,7 +5,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["scr/components/*"],
+      "@components/*": ["src/components/*"],
       "@layouts/*": ["src/layouts/*"],
       "@assets/*": ["src/assets/*"],
       "@utils": ["src/utils/*"]
