@@ -1,0 +1,49 @@
+---
+import ArrowRight from "@assets/icons/ArrowRight.astro";
+import { Image } from "astro:assets";
+import type { FeatureProject } from "@assets/dataProjects";
+
+interface Props extends FeatureProject {
+  imageFirst: boolean;
+}
+
+const { title, subtitle, description, image, imageFirst } = Astro.props;
+---
+
+<div class="grid items-center gap-16 lg:grid-cols-2">
+  <div class:list={["overflow-hidden shadow-xl", !imageFirst && "lg:order-2"]}>
+    <!-- <Image
+      width={1}
+      height={1}
+      src={image}
+      alt="Hillside Residence"
+      class="h-[500px] w-full object-cover"
+    /> -->
+    <div class="h-[500px] w-full bg-gray-500 object-cover"></div>
+  </div>
+  <div
+    class:list={[
+      "flex flex-col gap-6",
+      !imageFirst && "lg:items-end lg:text-end",
+    ]}
+  >
+    <div>
+      <h3 class="font-title mb-2 text-3xl">{title}</h3>
+      <p class="font-caption mb-4">
+        {subtitle}
+      </p>
+      <p class="text-lg leading-relaxed">
+        {description}
+      </p>
+    </div>
+    <a
+      href="/#proyects"
+      class="group flex w-max items-center rounded-md px-3 py-2 transition-colors duration-300 ease-in-out hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+    >
+      View Project Details
+      <ArrowRight
+        styles="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform"
+      />
+    </a>
+  </div>
+</div>
