@@ -6,6 +6,7 @@ body {
   width: 100%;
   height: 100%;
   font-family: 'DM Sans Variable', sans-serif;
+  scroll-behavior: smooth;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -20,5 +21,10 @@ body {
     font-family: 'Space Grotesk Variable', sans-serif;
     font-weight: 700;
     letter-spacing: -0.02em;
+  }
+  .font-caption {
+    font-size: 0.875rem;
+    opacity: 80;
+    line-height: 1.5;
   }
 }
