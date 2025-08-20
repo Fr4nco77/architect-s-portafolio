@@ -1,0 +1,52 @@
+---
+import ArrowRight from "@assets/icons/ArrowRight.astro";
+import { Image } from "astro:assets";
+---
+
+<section class="px-6 pt-24 pb-16">
+  <div class="mx-auto max-w-7xl">
+    <div class="grid min-h-[80vh] items-center gap-16 lg:grid-cols-2">
+      <div class="space-y-8">
+        <div class="space-y-4">
+          <h1 class="font-title text-5xl leading-tight lg:text-7xl">
+            INNOVATIVE
+            <br />
+            ARCHITECTURE
+          </h1>
+          <p
+            class="max-w-md text-lg text-gray-600 lg:text-xl dark:text-neutral-400"
+          >
+            Creating spaces that inspire, function beautifully, and stand the
+            test of time through thoughtful design and sustainable practices.
+          </p>
+        </div>
+        <a
+          href="/#projects"
+          class="group transition-color flex w-max items-center rounded-md border border-gray-300 px-3 py-2 duration-300 ease-in-out hover:bg-black hover:text-white dark:border-neutral-900 dark:hover:bg-white dark:hover:text-black"
+        >
+          View Projects
+          <ArrowRight
+            styles="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform"
+          />
+        </a>
+      </div>
+      <div class="relative">
+        <div class="overflow-hidden shadow-2xl">
+          <!-- <Image
+                width={1}
+                height={1}
+                  src=""
+                  alt="Featured architectural project"
+                  class="w-full h-[600px] object-cover"
+                /> -->
+          <div class="h-[600px] w-full bg-neutral-500 object-cover"></div>
+        </div>
+        <div
+          class="absolute -right-4 -bottom-4 rounded bg-[#fef6e4] p-4 dark:bg-neutral-950"
+        >
+          <p class="font-caption">Award-winning residential design, 2024</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
