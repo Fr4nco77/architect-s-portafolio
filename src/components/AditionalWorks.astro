@@ -1,6 +1,12 @@
 ---
-import { aditionalWorks } from "@assets/dataProjects";
 import SmallCardProject from "./SmallCardProject.astro";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  aditionalProjects: CollectionEntry<"project">[];
+}
+
+const { aditionalProjects } = Astro.props;
 ---
 
 <section class="bg-neutral-100 px-6 py-24 dark:bg-neutral-950">
@@ -13,9 +19,18 @@ import SmallCardProject from "./SmallCardProject.astro";
     </div>
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {
-        aditionalWorks.map(({ title, year, image }) => (
-          <SmallCardProject title={title} year={year} image={image} />
-        ))
+        aditionalProjects.map((project) => {
+          const { id, data } = project;
+          const { title, subtitle, hero } = data;
+          return (
+            <SmallCardProject
+              id={id}
+              title={title}
+              subtitle={subtitle}
+              image={hero}
+            />
+          );
+        })
       }
     </div>
   </div>

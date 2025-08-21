@@ -5,14 +5,20 @@ import Contact from "@components/Contact.astro";
 import FeatureProjects from "@components/FeaturedProjects.astro";
 import Hero from "@components/Hero.astro";
 import Layout from "@layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const projects = await getCollection("project");
+
+const featuredProjects = projects?.slice(0, 3);
+const aditionalProjects = projects?.slice(3);
 ---
 
 <Layout>
   <main>
     <Hero />
     <About />
-    <FeatureProjects />
-    <AditionalWorks />
+    <FeatureProjects featuredProjects={featuredProjects} />
+    <AditionalWorks aditionalProjects={aditionalProjects} />
     <Contact />
   </main>
 </Layout>

@@ -1,13 +1,17 @@
 ---
 import { Image } from "astro:assets";
-import type { AditionalWork } from "@assets/dataProjects";
 
-interface Props extends AditionalWork {}
+interface Props {
+  id: string;
+  title: string;
+  subtitle: string;
+  image: string;
+}
 
-const { title, year, image } = Astro.props;
+const { id, title, subtitle, image } = Astro.props;
 ---
 
-<div class="group cursor-pointer">
+<a href={`/${id}`} class="group cursor-pointer">
   <!-- <Image
   width={1}
   height={1}
@@ -21,6 +25,6 @@ const { title, year, image } = Astro.props;
   </div>
   <div class="p-6">
     <h3 class="font-title mb-1 text-lg">{title}</h3>
-    <p class="font-caption">{year}</p>
+    <p class="font-caption">{subtitle}</p>
   </div>
-</div>
+</a>

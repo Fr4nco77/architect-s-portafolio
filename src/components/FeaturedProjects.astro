@@ -1,6 +1,12 @@
 ---
-import { featuredProjects } from "@assets/dataProjects";
+import type { CollectionEntry } from "astro:content";
 import BigCardPoject from "./BigCardPoject.astro";
+
+interface Props {
+  featuredProjects: CollectionEntry<"project">[]
+}
+
+const {featuredProjects} = Astro.props;
 ---
 
 <section id="projects" class="px-6 py-24">
@@ -15,15 +21,21 @@ import BigCardPoject from "./BigCardPoject.astro";
     <div class="space-y-24">
       {
         featuredProjects.map(
-          ({ title, subtitle, description, image }, index) => (
-            <BigCardPoject
+          (project, index) => {
+            const {id, data} = project;
+            const { title, subtitle, description, hero } = data;
+            
+            return (
+              <BigCardPoject
+              id={id}
               title={title}
               subtitle={subtitle}
               description={description}
-              image={image}
+              image={hero}
               imageFirst={index % 2 === 0}
             />
-          ),
+            )
+          },
         )
       }
     </div>

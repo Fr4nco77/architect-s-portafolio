@@ -1,13 +1,17 @@
 ---
 import ArrowRight from "@assets/icons/ArrowRight.astro";
 import { Image } from "astro:assets";
-import type { FeatureProject } from "@assets/dataProjects";
 
-interface Props extends FeatureProject {
+interface Props {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
   imageFirst: boolean;
 }
 
-const { title, subtitle, description, image, imageFirst } = Astro.props;
+const { id, title, subtitle, description, image, imageFirst } = Astro.props;
 ---
 
 <div class="grid items-center gap-16 lg:grid-cols-2">
@@ -37,7 +41,7 @@ const { title, subtitle, description, image, imageFirst } = Astro.props;
       </p>
     </div>
     <a
-      href="/#proyects"
+      href={`/${id}`}
       class="group flex w-max items-center rounded-md px-3 py-2 transition-colors duration-300 ease-in-out hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
     >
       View Project Details
