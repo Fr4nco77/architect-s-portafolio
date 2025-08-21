@@ -1,0 +1,202 @@
+---
+import ArrowRight from "@assets/icons/ArrowRight.astro";
+import Layout from "@layouts/Layout.astro";
+import type { GetStaticPaths } from "astro";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+
+export const getStaticPaths = (async () => {
+  const projects = await getCollection("project");
+
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: project.data,
+  }));
+}) satisfies GetStaticPaths;
+
+const {
+  title,
+  subtitle,
+  hero,
+  description,
+  process,
+  gallery,
+  details,
+  reflection,
+  prev,
+  next,
+} = Astro.props;
+const { slug } = Astro.params;
+---
+
+<Layout pageTitle={title} description={description} url={`/${slug}`}>
+  <section class="relative h-screen">
+    <div class="absolute inset-0">
+      <!-- <Image
+    src={hero}
+    alt={title}
+    width={1}
+    height={1}
+    class="size-full object-cover"
+  /> -->
+      <div class="size-full bg-gray-500 object-cover"></div>
+      <div class="absolute inset-0 bg-black/20"></div>
+    </div>
+    <div class="absolute right-6 bottom-16 left-6 text-white">
+      <div class="max-w-4xl">
+        <h1
+          class="font-title mb-4 text-4xl leading-tight uppercase md:text-6xl"
+        >
+          {title}
+        </h1>
+        <p class="text-lg font-light opacity-90 md:text-xl">
+          {subtitle}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-6 py-24">
+    <div class="mx-auto max-w-3xl">
+      <p
+        class="text-lg leading-relaxed font-light text-gray-600 md:text-xl dark:text-neutral-400"
+      >
+        {description}
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-neutral-100 px-6 py-24 dark:bg-neutral-950">
+    <div class="mx-auto max-w-7xl">
+      <h2 class="font-title mb-16 text-center text-2xl font-light md:text-3xl">
+        DESIGN PROCESS
+      </h2>
+      <div class="mb-16 grid gap-8 md:grid-cols-2">
+        {
+          process.images.map((image) => (
+            <div class="space-y-4">
+              {/* <Image
+                src={image.src}
+                alt={image.caption}
+                width={1}
+                height={1}
+                class="aspect-[3/2] w-full object-cover"
+              /> */}
+              <div class="aspect-[3/2] w-full bg-gray-500 object-cover" />
+              <p class="text-sm opacity-65">{image.caption}</p>
+            </div>
+          ))
+        }
+      </div>
+      <div class="mx-auto max-w-4xl">
+        <p
+          class="text-base leading-relaxed text-gray-600 dark:text-neutral-400"
+        >
+          {process.text}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-6 py-24">
+    <div class="mx-auto max-w-7xl">
+      <h2 class="font-title mb-16 text-center text-2xl font-light md:text-3xl">
+        FINAL PRESENTATION
+      </h2>
+      <div class="space-y-16">
+        {
+          gallery?.map((image) => (
+            <div class="space-y-6">
+              {/* <Image
+                src={image.src}
+                alt={image.caption}
+                width={1}
+                height={1}
+                class="aspect-[3/2] w-full object-cover"
+              /> */}
+              <div class="aspect-[3/2] w-full bg-gray-500 object-cover" />
+              <p class="max-w-2xl text-sm opacity-65">{image.caption}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-neutral-100 px-6 py-24 dark:bg-neutral-950">
+    <div class="mx-auto max-w-7xl">
+      <h2 class="font-title mb-16 text-center text-2xl font-light md:text-3xl">
+        TECHNICAL DETAILS
+      </h2>
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {
+          details.map((detail) => (
+            <div class="space-y-4">
+              {/* <Image
+                src={detail.src}
+                alt={detail.caption}
+                width={1}
+                height={1}
+                class="aspect-square w-full object-cover"
+              /> */}
+              <div class="aspect-[3/2] w-full bg-gray-500 object-cover" />
+              <p class="text-sm opacity-65">{detail.caption}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="px-6 py-24">
+    <div class="mx-auto max-w-3xl">
+      <h2 class="font-title mb-12 text-center text-2xl font-light md:text-3xl">
+        REFLEXTION
+      </h2>
+      <p class="text-base leading-relaxed italic opacity-65">
+        {reflection}
+      </p>
+    </div>
+  </section>
+
+  <section class="px-6 py-16">
+    <div
+      class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 md:flex-row"
+    >
+      <div class="flex flex-1">
+        {
+          prev && (
+            <a
+              href={`/${prev}`}
+              class="group flex items-center gap-2 rounded-md border border-transparent px-5 py-2 transition-colors duration-300 ease-in-out hover:border-gray-300 hover:bg-black hover:text-white dark:hover:border-neutral-900 dark:hover:bg-white dark:hover:text-black"
+            >
+              <ArrowRight styles="w-5 h-5 rotate-180 group-hover:-translate-x-1 transition-transform" />
+              <span>Previous Project</span>
+            </a>
+          )
+        }
+      </div>
+
+      <a
+        href="/#projects"
+        class="rounded-md border border-gray-300 px-5 py-2 duration-300 ease-in-out hover:bg-black hover:text-white dark:border-neutral-900 dark:hover:bg-white dark:hover:text-black"
+      >
+        Back to Projects
+      </a>
+
+      <div class="flex flex-1 justify-end">
+        {
+          next && (
+            <a
+              href={`/${next}`}
+              class="group flex items-center gap-2 rounded-md border border-transparent px-5 py-2 transition-colors duration-300 ease-in-out hover:border-gray-300 hover:bg-black hover:text-white dark:hover:border-neutral-900 dark:hover:bg-white dark:hover:text-black"
+            >
+              <span>Next Project</span>
+              <ArrowRight styles="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </section>
+</Layout>
