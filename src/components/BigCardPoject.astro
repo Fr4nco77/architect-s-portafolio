@@ -16,14 +16,14 @@ const { id, title, subtitle, description, image, imageFirst } = Astro.props;
 
 <div class="grid items-center gap-16 lg:grid-cols-2">
   <div class:list={["overflow-hidden shadow-xl", !imageFirst && "lg:order-2"]}>
-    <!-- <Image
-      width={1}
-      height={1}
+    <Image
       src={image}
       alt="Hillside Residence"
-      class="h-[500px] w-full object-cover"
-    /> -->
-    <div class="h-[500px] w-full bg-gray-500 object-cover"></div>
+      width={1}
+      height={1}
+      loading="lazy"
+      class="h-[500px] w-full rounded object-cover shadow-xl"
+    />
   </div>
   <div
     class:list={[

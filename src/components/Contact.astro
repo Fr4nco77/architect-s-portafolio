@@ -41,15 +41,15 @@ import { Image } from "astro:assets";
         >
       </div>
 
-      <div class="overflow-hidden border-0 shadow-xl">
-        <!-- <Image
-        width={1}
-        height={1}
-          src="/placeholder.svg?height=400&width=500"
+      <div class="overflow-hidden">
+        <Image
+          src="/contact.webp"
           alt="Studio workspace"
-          class="h-[400px] w-full object-cover"
-        /> -->
-        <div class="h-[400px] w-full bg-gray-500 object-cover"></div>
+          width={1}
+          height={1}
+          loading={"lazy"}
+          class="h-[400px] w-full rounded object-cover shadow-xl"
+        />
       </div>
     </div>
   </div>

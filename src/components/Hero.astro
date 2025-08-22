@@ -31,20 +31,22 @@ import { Image } from "astro:assets";
         </a>
       </div>
       <div class="relative">
-        <div class="overflow-hidden shadow-2xl">
-          <!-- <Image
-                width={1}
-                height={1}
-                  src=""
-                  alt="Featured architectural project"
-                  class="w-full h-[600px] object-cover"
-                /> -->
-          <div class="h-[600px] w-full bg-neutral-500 object-cover"></div>
+        <div class="overflow-hidden rounded shadow-2xl">
+          <Image
+            src="/hero.webp"
+            alt="Featured architectural project"
+            width={1}
+            height={1}
+            loading={"eager"}
+            class="h-[600px] w-full object-cover"
+          />
         </div>
         <div
           class="absolute -right-4 -bottom-4 rounded bg-[#fef6e4] p-4 dark:bg-neutral-950"
         >
-          <p class="font-caption">Award-winning residential design, 2024</p>
+          <p class="font-caption">
+            Award-winning botanical garden design, 2024
+          </p>
         </div>
       </div>
     </div>

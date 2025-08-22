@@ -32,14 +32,14 @@ const { slug } = Astro.params;
 <Layout pageTitle={title} description={description} url={`/${slug}`}>
   <section class="relative h-screen">
     <div class="absolute inset-0">
-      <!-- <Image
-    src={hero}
-    alt={title}
-    width={1}
-    height={1}
-    class="size-full object-cover"
-  /> -->
-      <div class="size-full bg-gray-500 object-cover"></div>
+      <Image
+        src={hero}
+        alt={title}
+        width={1}
+        height={1}
+        loading="eager"
+        class="size-full object-cover"
+      />
       <div class="absolute inset-0 bg-black/20"></div>
     </div>
     <div class="absolute right-6 bottom-16 left-6 text-white">
@@ -73,16 +73,16 @@ const { slug } = Astro.params;
       </h2>
       <div class="mb-16 grid gap-8 md:grid-cols-2">
         {
-          process.images.map((image) => (
+          process.images.map((image, index) => (
             <div class="space-y-4">
-              {/* <Image
+              <Image
                 src={image.src}
                 alt={image.caption}
                 width={1}
                 height={1}
-                class="aspect-[3/2] w-full object-cover"
-              /> */}
-              <div class="aspect-[3/2] w-full bg-gray-500 object-cover" />
+                loading="lazy"
+                class="aspect-[3/2] w-full rounded object-cover"
+              />
               <p class="text-sm opacity-65">{image.caption}</p>
             </div>
           ))
@@ -107,14 +107,14 @@ const { slug } = Astro.params;
         {
           gallery?.map((image) => (
             <div class="space-y-6">
-              {/* <Image
+              <Image
                 src={image.src}
                 alt={image.caption}
                 width={1}
                 height={1}
-                class="aspect-[3/2] w-full object-cover"
-              /> */}
-              <div class="aspect-[3/2] w-full bg-gray-500 object-cover" />
+                loading="lazy"
+                class="aspect-[3/2] w-full rounded object-cover"
+              />
               <p class="max-w-2xl text-sm opacity-65">{image.caption}</p>
             </div>
           ))
@@ -132,14 +132,14 @@ const { slug } = Astro.params;
         {
           details.map((detail) => (
             <div class="space-y-4">
-              {/* <Image
+              <Image
                 src={detail.src}
                 alt={detail.caption}
                 width={1}
                 height={1}
-                class="aspect-square w-full object-cover"
-              /> */}
-              <div class="aspect-[3/2] w-full bg-gray-500 object-cover" />
+                loading="lazy"
+                class="aspect-square w-full rounded object-cover"
+              />
               <p class="text-sm opacity-65">{detail.caption}</p>
             </div>
           ))

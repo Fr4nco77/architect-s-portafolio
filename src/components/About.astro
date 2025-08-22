@@ -23,7 +23,7 @@ import { Image } from "astro:assets";
             contextual.
           </p>
         </div>
-        <div class="grid gap-8 pt-8 md:grid-cols-3 text-center md:text-start">
+        <div class="grid gap-8 pt-8 text-center md:grid-cols-3 md:text-start">
           <div>
             <h3 class="font-title mb-2 text-2xl">50+</h3>
             <p class="font-caption">Projects Completed</p>
@@ -39,15 +39,15 @@ import { Image } from "astro:assets";
         </div>
       </div>
       <div class="space-y-4">
-        <div class="overflow-hidden">
-          <!-- <Image
+        <div class="overflow-hidden rounded shadow-xl">
+          <Image
+            src="/about.webp"
+            alt="Architect portrait"
             width={1}
             height={1}
-            src="/placeholder.svg?height=400&width=300"
-            alt="Architect portrait"
+            loading={"lazy"}
             class="h-[400px] w-full object-cover"
-          /> -->
-          <div class="h-[400px] w-full bg-gray-500 object-cover"></div>
+          />
         </div>
         <p class="font-caption text-center">Studio portrait, 2024</p>
       </div>
