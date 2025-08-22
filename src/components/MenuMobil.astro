@@ -79,10 +79,10 @@ const { lang, translate } = Astro.props;
   </div>
 </div>
 
-<script>
-  const menu = document.getElementById("mobilMenu")!;
-  const btnOpen = document.getElementById("open-menu")!;
-  const btnClose = document.getElementById("close-menu")!;
+<script is:inline data-astro-rerun>
+  const menu = document.getElementById("mobilMenu");
+  const btnOpen = document.getElementById("open-menu");
+  const btnClose = document.getElementById("close-menu");
   const [span1, span2, span3] = btnOpen.querySelectorAll("span");
   const menuLinks = menu.querySelectorAll("a");
 
