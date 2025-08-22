@@ -1,20 +1,26 @@
 ---
+import type { Translate } from "@i18n/utils";
 import SmallCardProject from "./SmallCardProject.astro";
 import type { CollectionEntry } from "astro:content";
+import { languages } from "@i18n/ui";
 
 interface Props {
   aditionalProjects: CollectionEntry<"project">[];
+  lang: keyof typeof languages;
+  translate: Translate;
 }
 
-const { aditionalProjects } = Astro.props;
+const { lang, translate, aditionalProjects } = Astro.props;
 ---
 
 <section class="bg-neutral-100 px-6 py-24 dark:bg-neutral-950">
   <div class="mx-auto max-w-7xl">
     <div class="mb-16">
-      <h2 class="font-title mb-4 text-4xl">Additional Works</h2>
+      <h2 class="font-title mb-4 text-4xl">
+        {translate("aditionalWorks.title")}
+      </h2>
       <p class="text-lg text-gray-600 dark:text-neutral-400">
-        Exploring diverse typologies and scales of architectural intervention.
+        {translate("aditionalWorks.subtitle")}
       </p>
     </div>
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -24,9 +30,10 @@ const { aditionalProjects } = Astro.props;
           const { title, subtitle, hero } = data;
           return (
             <SmallCardProject
+              lang={lang}
               id={id}
-              title={title}
-              subtitle={subtitle}
+              title={title[lang]}
+              subtitle={subtitle[lang]}
               image={hero}
             />
           );

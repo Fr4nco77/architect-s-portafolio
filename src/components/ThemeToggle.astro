@@ -4,9 +4,8 @@ import Moon from "@assets/icons/Moon.astro";
 ---
 
 <button
-  id="toggleTheme"
   aria-label="Cambiar tema"
-  class="flex h-8 w-8 cursor-pointer items-center justify-center rounded-md transition-colors duration-300 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+  class="toggleTheme flex h-8 w-8 cursor-pointer items-center justify-center rounded-md transition-colors duration-300 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
 >
   <Sun
     styles="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 duration-300"
@@ -17,9 +16,13 @@ import Moon from "@assets/icons/Moon.astro";
 </button>
 
 <script>
-  document.getElementById("toggleTheme")?.addEventListener("click", () => {
-    const html = document.documentElement;
-    const isDark = html.classList.toggle("dark");
-    localStorage.setItem("theme", isDark ? "dark" : "light");
+  const toggles = document.querySelectorAll(".toggleTheme");
+  
+  toggles.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const html = document.documentElement;
+      const isDark = html.classList.toggle("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
   });
 </script>

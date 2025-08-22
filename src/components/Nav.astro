@@ -1,36 +1,55 @@
 ---
 import ThemeToggle from "@components/ThemeToggle.astro";
 import MobilMenu from "@components/MenuMobil.astro";
+import type { Translate } from "@i18n/utils";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import I18nToggle from "./I18nToggle.astro";
+interface Props {
+  lang: string;
+  translate: Translate;
+}
+
+const { lang, translate } = Astro.props;
+
 ---
 
 <nav
   class="fixed top-0 right-0 left-0 z-10 border-b border-gray-300 backdrop-blur-sm dark:border-neutral-900"
 >
   <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-    <a href="/" class="font-title text-xl">ARCHITECT</a>
-    <div class="flex items-center gap-4 md:gap-8">
+    <a href={getRelativeLocaleUrl(lang, "/")} class="font-title text-xl"
+      >ARCHITECT</a
+    >
+    
       <ul class="hidden items-center gap-8 md:flex">
         <li>
           <a
             class="text-sm transition-opacity duration-200 hover:opacity-75"
-            href="/#about">About</a
+            href={getRelativeLocaleUrl(lang, "/") + "#about"}
+            >{translate("nav.about")}</a
           >
         </li>
         <li>
           <a
             class="text-sm transition-opacity duration-200 hover:opacity-75"
-            href="/#projects">Projects</a
+            href={getRelativeLocaleUrl(lang, "/") + "#projects"}
+            >{translate("nav.projects")}</a
           >
         </li>
         <li>
           <a
             class="text-sm transition-opacity duration-200 hover:opacity-75"
-            href="/#contact">Contact</a
+            href={getRelativeLocaleUrl(lang, "/") + "#contact"}
+            >{translate("nav.contact")}</a
           >
+        </li>
+        <li>
+          <div class="flex gap-1 items-center">
+            <I18nToggle lang={lang}/>
+            <ThemeToggle />
+          </div>
         </li>
       </ul>
-      <ThemeToggle />
-      <MobilMenu />
-    </div>
+      <MobilMenu lang={lang} translate={translate} />
   </div>
 </nav>

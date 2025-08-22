@@ -1,0 +1,23 @@
+---
+import { languages } from "@i18n/ui";
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const url = Astro.url;
+
+const changeLang =
+  lang === "en"
+    ? `${url.origin}/es`.concat(url.pathname)
+    : url.href.replace("/es/", "/");
+---
+
+<a
+  href={changeLang}
+  aria-label="Change language"
+  class="flex h-8 w-8 items-center justify-center rounded-md font-medium underline underline-offset-4 transition-all duration-300 hover:bg-black hover:text-white hover:no-underline dark:hover:bg-white dark:hover:text-black"
+>
+  {languages[lang as keyof typeof languages]}
+</a>

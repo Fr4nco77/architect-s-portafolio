@@ -4,6 +4,9 @@ import "@fontsource-variable/dm-sans";
 import "@fontsource-variable/space-grotesk";
 import Nav from "@components/Nav.astro";
 import Footer from "@components/Footer.astro";
+import { useTranslations } from "@i18n/utils";
+import type { languages } from "@i18n/ui";
+import { getRelativeLocaleUrl } from "astro:i18n";
 
 interface Props {
   pageTitle?: string;
@@ -11,19 +14,22 @@ interface Props {
   url?: string;
 }
 
+const currentLang = Astro.currentLocale || "en";
+const translateUi = useTranslations(currentLang as keyof typeof languages);
+
 const {
   pageTitle,
-  description = "ARCHITECT is a modern architectural portfolio showcasing innovative projects, detailed processes, and creative design solutions. Explore residential, commercial, and conceptual works that blend aesthetics with functionality.",
+  description = translateUi("description"),
   url,
 } = Astro.props;
 const siteTitle = "Architect";
 const finalTitle = [siteTitle, pageTitle].filter(Boolean).join(" | ");
 const baseUrl = process.env.URL || "http:localhost:4321";
-const finalUrl = url ? baseUrl.concat(url) : baseUrl;
+const finalUrl = url ? getRelativeLocaleUrl(currentLang, url) : baseUrl;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={currentLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -31,9 +37,23 @@ const finalUrl = url ? baseUrl.concat(url) : baseUrl;
     <meta name="description" content={description} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="canonical" href={finalUrl} />
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicons/favicon-16x16.png"
+    />
     <link rel="manifest" href="/favicons/site.webmanifest" />
     <title>{finalTitle}</title>
     <script
@@ -48,7 +68,10 @@ const finalUrl = url ? baseUrl.concat(url) : baseUrl;
         publisher: {
           "@type": "Organization",
           name: siteTitle,
-          logo: { "@type": "ImageObject", url: `${baseUrl}/favicons/favicon-16x16.png` },
+          logo: {
+            "@type": "ImageObject",
+            url: `${baseUrl}/favicons/favicon-16x16.png`,
+          },
         },
       })}
     />
@@ -69,8 +92,8 @@ const finalUrl = url ? baseUrl.concat(url) : baseUrl;
     </script>
   </head>
   <body>
-    <Nav />
+    <Nav lang={currentLang} translate={translateUi} />
     <slot />
-    <Footer />
+    <Footer translate={translateUi} />
   </body>
 </html>

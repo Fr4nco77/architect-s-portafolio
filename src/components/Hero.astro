@@ -1,6 +1,15 @@
 ---
 import ArrowRight from "@assets/icons/ArrowRight.astro";
+import type { Translate } from "@i18n/utils";
 import { Image } from "astro:assets";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+interface Props {
+  lang: string;
+  translate: Translate;
+}
+
+const { lang, translate } = Astro.props;
 ---
 
 <section class="px-6 pt-24 pb-16">
@@ -8,23 +17,22 @@ import { Image } from "astro:assets";
     <div class="grid min-h-[80vh] items-center gap-16 lg:grid-cols-2">
       <div class="space-y-8">
         <div class="space-y-4">
-          <h1 class="font-title text-5xl leading-tight lg:text-7xl">
-            INNOVATIVE
+          <h1 class="font-title text-4xl leading-tight sm:text-5xl lg:text-7xl">
+            {translate("hero.title1")}
             <br />
-            ARCHITECTURE
+            {translate("hero.title2")}
           </h1>
           <p
             class="max-w-md text-lg text-gray-600 lg:text-xl dark:text-neutral-400"
           >
-            Creating spaces that inspire, function beautifully, and stand the
-            test of time through thoughtful design and sustainable practices.
+            {translate("hero.subtitle")}
           </p>
         </div>
         <a
-          href="/#projects"
+          href={getRelativeLocaleUrl(lang, "/") + "#projects"}
           class="group transition-color flex w-max items-center rounded-md border border-gray-300 px-3 py-2 duration-300 ease-in-out hover:bg-black hover:text-white dark:border-neutral-900 dark:hover:bg-white dark:hover:text-black"
         >
-          View Projects
+          {translate("hero.action")}
           <ArrowRight
             styles="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform"
           />
@@ -45,7 +53,7 @@ import { Image } from "astro:assets";
           class="absolute -right-4 -bottom-4 rounded bg-[#fef6e4] p-4 dark:bg-neutral-950"
         >
           <p class="font-caption">
-            Award-winning botanical garden design, 2024
+            {translate("hero.caption")}
           </p>
         </div>
       </div>

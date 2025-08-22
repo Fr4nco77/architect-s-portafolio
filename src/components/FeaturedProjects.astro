@@ -1,42 +1,47 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import BigCardPoject from "./BigCardPoject.astro";
+import type { Translate } from "@i18n/utils";
+import { languages } from "@i18n/ui";
 
 interface Props {
-  featuredProjects: CollectionEntry<"project">[]
+  featuredProjects: CollectionEntry<"project">[];
+  lang: keyof typeof languages;
+  translate: Translate;
 }
 
-const {featuredProjects} = Astro.props;
+const { lang, translate, featuredProjects } = Astro.props;
 ---
 
 <section id="projects" class="px-6 py-24">
   <div class="mx-auto max-w-7xl">
     <div class="mb-16">
-      <h2 class="font-title mb-4 text-4xl">Featured Projects</h2>
+      <h2 class="font-title mb-4 text-4xl">
+        {translate("featuredProjects.title")}
+      </h2>
       <p class="max-w-2xl text-lg text-gray-600 dark:text-neutral-400">
-        A selection of recent works that demonstrate our commitment to
-        innovative design, sustainable practices, and exceptional craftsmanship.
+        {translate("featuredProjects.subtitle")}
       </p>
     </div>
     <div class="space-y-24">
       {
-        featuredProjects.map(
-          (project, index) => {
-            const {id, data} = project;
-            const { title, subtitle, description, hero } = data;
-            
-            return (
-              <BigCardPoject
+        featuredProjects.map((project, index) => {
+          const { id, data } = project;
+          const { title, subtitle, description, hero } = data;
+
+          return (
+            <BigCardPoject
+              lang={lang}
               id={id}
-              title={title}
-              subtitle={subtitle}
-              description={description}
+              title={title[lang]}
+              subtitle={subtitle[lang]}
+              description={description[lang]}
               image={hero}
               imageFirst={index % 2 === 0}
+              viewDetail={translate("featuredProjects.viewDetail")}
             />
-            )
-          },
-        )
+          );
+        })
       }
     </div>
   </div>

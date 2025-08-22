@@ -2,7 +2,14 @@
 import Mail from "@assets/icons/Mail.astro";
 import MapPin from "@assets/icons/MapPin.astro";
 import Phone from "@assets/icons/Phone.astro";
+import type { Translate } from "@i18n/utils";
 import { Image } from "astro:assets";
+
+interface Props {
+  translate: Translate;
+}
+
+const { translate } = Astro.props;
 ---
 
 <section id="contact" class="px-6 py-24">
@@ -11,12 +18,10 @@ import { Image } from "astro:assets";
       <div class="space-y-8">
         <div>
           <h2 class="font-title mb-4 text-4xl">
-            Let's Create Something Extraordinary
+            {translate("contact.title")}
           </h2>
           <p class="text-lg leading-relaxed">
-            Ready to bring your architectural vision to life? I'd love to
-            discuss your project and explore how thoughtful design can transform
-            your space and enhance your experience.
+            {translate("contact.p")}
           </p>
         </div>
 
@@ -37,7 +42,7 @@ import { Image } from "astro:assets";
 
         <button
           class="cursor-pointer rounded-md bg-black px-3 py-2 text-white transition-opacity duration-300 ease-in-out hover:opacity-80 dark:bg-white dark:text-black"
-          >Schedule a Consultation</button
+          >{translate("contact.action")}</button
         >
       </div>
 

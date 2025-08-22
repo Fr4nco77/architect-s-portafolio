@@ -1,17 +1,19 @@
 ---
 import { Image } from "astro:assets";
+import { getRelativeLocaleUrl } from "astro:i18n";
 
 interface Props {
+  lang: string;
   id: string;
   title: string;
   subtitle: string;
   image: string;
 }
 
-const { id, title, subtitle, image } = Astro.props;
+const { lang, id, title, subtitle, image } = Astro.props;
 ---
 
-<a href={`/${id}`} class="group cursor-pointer">
+<a href={getRelativeLocaleUrl(lang, id)} class="group cursor-pointer">
   <Image
     src={image}
     alt={title}

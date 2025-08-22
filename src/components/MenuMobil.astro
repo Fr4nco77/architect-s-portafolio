@@ -1,3 +1,17 @@
+---
+import type { Translate } from "@i18n/utils";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import I18NToggle from "./I18nToggle.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+
+interface Props {
+  lang: string;
+  translate: Translate;
+}
+
+const { lang, translate } = Astro.props;
+---
+
 <div class="flex items-center space-x-4 md:hidden">
   <button
     id="open-menu"
@@ -21,6 +35,10 @@
   class="invisible fixed inset-0 z-15 h-[30vh] border-b border-gray-300 bg-white/85 opacity-0 transition-all duration-300 ease-in-out md:hidden dark:border-neutral-900 dark:bg-black/85"
 >
   <div class="relative flex size-full flex-col items-center justify-center">
+    <div class="absolute top-4 left-6 flex items-center gap-1">
+      <I18NToggle lang={lang} />
+      <ThemeToggle />
+    </div>
     <button
       id="close-menu"
       class="absolute top-4 right-6 flex h-8 w-5 flex-col items-center justify-center"
@@ -37,21 +55,24 @@
         <a
           aria-label="To about"
           class="font-title text-2xl transition-opacity duration-200 hover:opacity-75"
-          href="/#about">About</a
+          href={getRelativeLocaleUrl(lang, "/") + "#about"}
+          >{translate("nav.about")}</a
         >
       </li>
       <li>
         <a
           aria-label="To projects"
           class="font-title text-2xl transition-opacity duration-200 hover:opacity-75"
-          href="/#projects">Projects</a
+          href={getRelativeLocaleUrl(lang, "/") + "#projects"}
+          >{translate("nav.projects")}</a
         >
       </li>
       <li>
         <a
           aria-label="To contact"
           class="font-title text-2xl transition-opacity duration-200 hover:opacity-75"
-          href="/#contact">Contact</a
+          href={getRelativeLocaleUrl(lang, "/") + "#contact"}
+          >{translate("nav.contact")}</a
         >
       </li>
     </ul>
@@ -79,8 +100,7 @@
   btnOpen.addEventListener("click", toggleMenu);
   btnClose.addEventListener("click", toggleMenu);
 
-  menuLinks.forEach(link => {
+  menuLinks.forEach((link) => {
     link.addEventListener("click", toggleMenu);
   });
 </script>
-
