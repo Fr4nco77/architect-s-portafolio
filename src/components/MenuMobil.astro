@@ -80,27 +80,29 @@ const { lang, translate } = Astro.props;
 </div>
 
 <script is:inline data-astro-rerun>
-  const menu = document.getElementById("mobilMenu");
-  const btnOpen = document.getElementById("open-menu");
-  const btnClose = document.getElementById("close-menu");
-  const [span1, span2, span3] = btnOpen.querySelectorAll("span");
-  const menuLinks = menu.querySelectorAll("a");
+  (function () {
+    const menu = document.getElementById("mobilMenu");
+    const btnOpen = document.getElementById("open-menu");
+    const btnClose = document.getElementById("close-menu");
+    const [span1, span2, span3] = btnOpen.querySelectorAll("span");
+    const menuLinks = menu.querySelectorAll("a");
 
-  function toggleMenu() {
-    span1.classList.toggle("rotate-45");
-    span1.classList.toggle("translate-y-1.5");
-    span2.classList.toggle("opacity-0");
-    span3.classList.toggle("-rotate-45");
-    span3.classList.toggle("-translate-y-1.5");
+    function toggleMenu() {
+      span1.classList.toggle("rotate-45");
+      span1.classList.toggle("translate-y-1.5");
+      span2.classList.toggle("opacity-0");
+      span3.classList.toggle("-rotate-45");
+      span3.classList.toggle("-translate-y-1.5");
 
-    menu.classList.toggle("opacity-0");
-    menu.classList.toggle("invisible");
-  }
+      menu.classList.toggle("opacity-0");
+      menu.classList.toggle("invisible");
+    }
 
-  btnOpen.addEventListener("click", toggleMenu);
-  btnClose.addEventListener("click", toggleMenu);
+    btnOpen.addEventListener("click", toggleMenu);
+    btnClose.addEventListener("click", toggleMenu);
 
-  menuLinks.forEach((link) => {
-    link.addEventListener("click", toggleMenu);
-  });
+    menuLinks.forEach((link) => {
+      link.addEventListener("click", toggleMenu);
+    });
+  })();
 </script>
