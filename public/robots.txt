@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://frame.vercel.app/sitemap-index.xml
+Sitemap: https://architect-portafolio.vercel.app/sitemap-index.xml
