@@ -7,6 +7,7 @@ import Footer from "@components/Footer.astro";
 import { useTranslations } from "@i18n/utils";
 import type { languages } from "@i18n/ui";
 import { getRelativeLocaleUrl } from "astro:i18n";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   pageTitle?: string;
@@ -90,6 +91,7 @@ const finalUrl = url ? getRelativeLocaleUrl(currentLang, url) : baseUrl;
         }
       })();
     </script>
+    <ClientRouter />
   </head>
   <body>
     <Nav lang={currentLang} translate={translateUi} />
