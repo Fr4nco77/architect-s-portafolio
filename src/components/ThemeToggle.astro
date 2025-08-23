@@ -4,7 +4,7 @@ import Moon from "@assets/icons/Moon.astro";
 ---
 
 <button
-  aria-label="Cambiar tema"
+  aria-label="change theme"
   class="toggleTheme flex h-8 w-8 cursor-pointer items-center justify-center rounded-md transition-colors duration-300 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
 >
   <Sun
@@ -16,13 +16,14 @@ import Moon from "@assets/icons/Moon.astro";
 </button>
 
 <script is:inline data-astro-rerun>
-  const toggles = document.querySelectorAll(".toggleTheme");
-  
-  toggles.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const html = document.documentElement;
-      const isDark = html.classList.toggle("dark");
-      localStorage.setItem("theme", isDark ? "dark" : "light");
+  document.querySelectorAll(".toggleTheme").forEach((btn) => {
+      if (!btn.dataset.listenerAdded) {
+        btn.addEventListener("click", () => {
+          const html = document.documentElement;
+          const isDark = html.classList.toggle("dark");
+          localStorage.setItem("theme", isDark ? "dark" : "light");
+        });
+        btn.dataset.listenerAdded = "true"; // marca que ya tiene listener
+      }
     });
-  });
 </script>
