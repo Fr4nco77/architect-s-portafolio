@@ -76,7 +76,7 @@ const finalUrl = url ? getRelativeLocaleUrl(currentLang, url) : baseUrl;
         },
       })}
     />
-    <script is:inline>
+    <script is:inline data-astro-rerun>
       (() => {
         const stored = localStorage.getItem("theme");
         const prefersDark = window.matchMedia(
