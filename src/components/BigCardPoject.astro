@@ -14,15 +14,23 @@ interface Props {
   viewDetail: string;
 }
 
-const { lang, id, title, subtitle, description, image, imageFirst, viewDetail } =
-  Astro.props;
+const {
+  lang,
+  id,
+  title,
+  subtitle,
+  description,
+  image,
+  imageFirst,
+  viewDetail,
+} = Astro.props;
 ---
 
 <div class="grid items-center gap-16 lg:grid-cols-2">
   <div class:list={["overflow-hidden shadow-xl", !imageFirst && "lg:order-2"]}>
     <Image
       src={image}
-      alt="Hillside Residence"
+      alt={title}
       width={1}
       height={1}
       loading="lazy"
@@ -46,7 +54,7 @@ const { lang, id, title, subtitle, description, image, imageFirst, viewDetail } 
     </div>
     <a
       href={getRelativeLocaleUrl(lang, id)}
-      class="group border border-gray-300 dark:border-neutral-900 flex w-max items-center rounded-md px-3 py-2 transition-colors duration-300 ease-in-out hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+      class="group flex w-max items-center rounded-md border border-gray-300 px-3 py-2 transition-colors duration-300 ease-in-out hover:bg-black hover:text-white dark:border-neutral-900 dark:hover:bg-white dark:hover:text-black"
     >
       {viewDetail}
       <ArrowRight
