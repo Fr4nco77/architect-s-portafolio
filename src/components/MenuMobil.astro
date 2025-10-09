@@ -32,7 +32,7 @@ const { lang, translate } = Astro.props;
 
 <div
   id="mobilMenu"
-  class="invisible fixed inset-0 z-15 h-[30vh] border-b border-gray-300 bg-white/85 opacity-0 transition-all duration-300 ease-in-out md:hidden dark:border-neutral-900 dark:bg-black/85"
+  class="invisible fixed inset-0 z-15 h-[35vh] border-b border-gray-300 bg-white/85 opacity-0 transition-all duration-300 ease-in-out md:hidden dark:border-neutral-900 dark:bg-black/85"
 >
   <div class="relative flex size-full flex-col items-center justify-center">
     <div class="absolute top-4 left-6 flex items-center gap-1">
@@ -51,6 +51,13 @@ const { lang, translate } = Astro.props;
       ></span>
     </button>
     <ul class="flex flex-col gap-8">
+      <li>
+        <a
+          aria-label="To home"
+          class="font-title text-2xl transition-opacity duration-200 hover:opacity-75"
+          href={getRelativeLocaleUrl(lang, "/")}>{translate("nav.home")}</a
+        >
+      </li>
       <li>
         <a
           aria-label="To about"

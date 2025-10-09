@@ -10,7 +10,6 @@ interface Props {
 }
 
 const { lang, translate } = Astro.props;
-
 ---
 
 <nav
@@ -20,36 +19,42 @@ const { lang, translate } = Astro.props;
     <a href={getRelativeLocaleUrl(lang, "/")} class="font-title text-xl"
       >ARCHITECT</a
     >
-    
-      <ul class="hidden items-center gap-8 md:flex">
-        <li>
-          <a
-            class="text-sm transition-opacity duration-200 hover:opacity-75"
-            href={getRelativeLocaleUrl(lang, "/") + "#about"}
-            >{translate("nav.about")}</a
-          >
-        </li>
-        <li>
-          <a
-            class="text-sm transition-opacity duration-200 hover:opacity-75"
-            href={getRelativeLocaleUrl(lang, "/") + "#projects"}
-            >{translate("nav.projects")}</a
-          >
-        </li>
-        <li>
-          <a
-            class="text-sm transition-opacity duration-200 hover:opacity-75"
-            href={getRelativeLocaleUrl(lang, "/") + "#contact"}
-            >{translate("nav.contact")}</a
-          >
-        </li>
-        <li>
-          <div class="flex gap-1 items-center">
-            <I18nToggle lang={lang}/>
-            <ThemeToggle />
-          </div>
-        </li>
-      </ul>
-      <MobilMenu lang={lang} translate={translate} />
+
+    <ul class="hidden items-center gap-8 md:flex">
+      <li>
+        <a
+          class="text-sm transition-opacity duration-200 hover:opacity-75"
+          href={getRelativeLocaleUrl(lang, "/")}>{translate("nav.home")}</a
+        >
+      </li>
+      <li>
+        <a
+          class="text-sm transition-opacity duration-200 hover:opacity-75"
+          href={getRelativeLocaleUrl(lang, "/") + "#about"}
+          >{translate("nav.about")}</a
+        >
+      </li>
+      <li>
+        <a
+          class="text-sm transition-opacity duration-200 hover:opacity-75"
+          href={getRelativeLocaleUrl(lang, "/") + "#projects"}
+          >{translate("nav.projects")}</a
+        >
+      </li>
+      <li>
+        <a
+          class="text-sm transition-opacity duration-200 hover:opacity-75"
+          href={getRelativeLocaleUrl(lang, "/") + "#contact"}
+          >{translate("nav.contact")}</a
+        >
+      </li>
+      <li>
+        <div class="flex items-center gap-1">
+          <I18nToggle lang={lang} />
+          <ThemeToggle />
+        </div>
+      </li>
+    </ul>
+    <MobilMenu lang={lang} translate={translate} />
   </div>
 </nav>

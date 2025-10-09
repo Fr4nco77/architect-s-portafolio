@@ -10,6 +10,7 @@ export const ui = {
     description:
       "ARCHITECT is a modern architectural portfolio showcasing innovative projects, detailed processes, and creative design solutions. Explore residential, commercial, and conceptual works that blend aesthetics with functionality.",
 
+    "nav.home": "Home",
     "nav.about": "About",
     "nav.projects": "Projects",
     "nav.contact": "Contact",
@@ -64,6 +65,7 @@ export const ui = {
     description:
       "ARCHITECT es un portafolio arquitectónico moderno que muestra proyectos innovadores, procesos detallados y soluciones creativas de diseño. Explora trabajos residenciales, comerciales y conceptuales que combinan estética y funcionalidad.",
 
+    "nav.home": "Inicio",
     "nav.about": "Acerca de",
     "nav.projects": "Proyectos",
     "nav.contact": "Contacto",
